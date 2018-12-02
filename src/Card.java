@@ -1,14 +1,14 @@
-package pokertony;
+//package pokertony;
 
 import PaD.*;
 
 public class Card {
 
     private Color color;
-
     private Rank rank;
-
     private Image img;
+
+
 
     public Card(Rank r, Color c) {
 
@@ -34,13 +34,13 @@ public class Card {
         return this.getColor().ordinal() - c.getColor().ordinal();
     }
 
-    public void display(PlancheADessin pad, double x, double y) {
-        String path = "src/pokertony/images/" + this.getRank().toString().toLowerCase() + "-" + this.getColor().toString().toLowerCase() + ".gif";
+    public void display(double x, double y) {
+        String path = "../ressources/images/" + this.getRank().toString().toLowerCase() + "-" + this.getColor().toString().toLowerCase() + ".gif";
 
-        img = new PaD.Image(path);
+        img = new Image(path);
         img.setOrig(x, y);
 
-        pad.ajouter(this.img);
+        PokerTony.pad.ajouter(this.img);
     }
 
     @Override

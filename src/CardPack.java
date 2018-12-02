@@ -1,4 +1,4 @@
-package pokertony;
+//package pokertony;
 
 import PaD.*;
 import java.util.Random;
@@ -7,9 +7,10 @@ import java.util.Vector;
 public class CardPack {
 
     private Card[] cards;
+    private int counter;
 
     public CardPack() {
-        cards = new Card[52];
+        this.cards = new Card[52];
         int i = 0;
 
         for (Color color : Color.values()) {
@@ -30,7 +31,7 @@ public class CardPack {
     }
     
     public Object[] getCardsByValue(Rank rank) {
-        var cards = new Vector();
+        Vector<Card> cards = new Vector<Card>();
         for(Card c : this.getCards()) {
             if(c.getRank() == rank){
                 cards.addElement(c);
@@ -40,7 +41,7 @@ public class CardPack {
     }
     
     public Object[] getCardsByColor(Color color) {
-        var cards = new Vector();
+        Vector<Card> cards = new Vector<Card>();
         for(Card c : this.getCards()) {
             if(c.getColor() == color){
                 cards.addElement(c);
@@ -120,7 +121,7 @@ public class CardPack {
         rapidSort(0, cards.length - 1, false);
     }
 
-    public void display(PlancheADessin pad, double x, double y) {
+    public void display(double x, double y) {
         int j = 0;
         int i = 0;
         for (Card card : this.cards) {
@@ -128,13 +129,13 @@ public class CardPack {
                 i = 0;
                 j++;
             }
-            card.display(pad, i * 70 + x, j * 100 + y);
+            card.display(i * 70 + x, j * 100 + y);
             i++;
         }
     }
 
-    public void display(PlancheADessin pad) {
-        this.display(pad, 0, 0);
+    public void display() {
+        this.display(0, 0);
     }
 
     /**
@@ -152,4 +153,19 @@ public class CardPack {
 
         return output;
     }
+
+
+
+    public Card[] takeNumberCard(int number){
+
+
+        Card[] returnCard = new Card[number];
+
+        for(int i = counter; i< (counter+number); i++){
+            returnCard[i-counter] = cards[i];
+        }
+        this.counter = this.counter + number;
+        return returnCard;
+    }
+
 }
