@@ -1,4 +1,4 @@
-//package pokertony;
+package pokertony;
 
 public enum Color {
     SPADE,

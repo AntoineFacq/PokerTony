@@ -1,4 +1,4 @@
-//package pokertony;
+package pokertony;
 
 import PaD.*;
 import java.util.*;

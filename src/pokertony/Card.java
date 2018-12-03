@@ -1,4 +1,4 @@
-//package pokertony;
+package pokertony;
 
 import PaD.*;
 
@@ -35,7 +35,7 @@ public class Card {
     }
 
     public void display(double x, double y) {
-        String path = "../ressources/images/" + this.getRank().toString().toLowerCase() + "-" + this.getColor().toString().toLowerCase() + ".gif";
+        String path = "resources/images/" + this.getRank().toString().toLowerCase() + "-" + this.getColor().toString().toLowerCase() + ".gif";
 
         img = new Image(path);
         img.setOrig(x, y);

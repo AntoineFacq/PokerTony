@@ -1,4 +1,5 @@
-//package pokertony;
+package pokertony;
+
 
 public enum Rank {
     TWO(2),

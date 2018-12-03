@@ -1,10 +1,12 @@
+package pokertony;
+
 
 
 import PaD.*;
 
 public class BackCard {
 
-    private static String path = "../ressources/images/back.gif";
+    private static String path = "resources/images/back.gif";
 
     public static void display(double x, double y){
 

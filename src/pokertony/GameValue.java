@@ -1,3 +1,5 @@
+package pokertony;
+
 
 import PaD.*;
 
@@ -8,14 +10,16 @@ public class GameValue{
     private Card[] handAndAutorizeFiled;
     
     GameValue(Player player){
-        this.handAndField = player.gethand() + PokerTony.field.getCards();
+        // this.handAndField = player.gethand() + PokerTony.field.getCards();
     }
-
+    /*
     public Card[] autorizeCard(){
         /**
          * Créer un tableau que avec la main du joueur et les cartes retournés
-         */
+         
+        return 
     }
+    */
 
     public Boolean checkPair(Card[] cards){
         /**
