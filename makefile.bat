@@ -1,5 +1,5 @@
 @echo off
-set source=C:\Users\antoi\Documents\GitHub\Poker-java\PokerTony\src\
+set source=C:\Users\antoi\Documents\GitHub\Poker-java\PokerTony\src\pokertony\
 set bin=C:\Users\antoi\Documents\GitHub\Poker-java\PokerTony\bin\
 set PaD=C:\Users\antoi\Documents\GitHub\Poker-java\PokerTony\lib\PaD.jar
 
@@ -18,7 +18,7 @@ dir /s/b/a-d *.java > src.txt
 javac -cp %JAVAPATH% -encoding utf8  -d %bin% @src.txt
 
 :: Execute code
-java -cp %CLASSPATH% PokerTony
+java -cp %CLASSPATH% pokertony.PokerTony
 
 
 
