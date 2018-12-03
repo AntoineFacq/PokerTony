@@ -3,16 +3,16 @@
 public class Field{
 
     private Card[] cards;
-    private int turnedCards;
+    private int numberTurnedCards;
 
     Field(CardPack cardPack){
         this.cards = cardPack.takeNumberCard(5);
-        this.turnedCards = 3;
+        this.numberTurnedCards = 3;
     }
 
     public void returnCard(){
-        if(turnedCards < 5 ){
-        this.turnedCards = this.turnedCards + 1;
+        if(numberTurnedCards < 5 ){
+        this.numberTurnedCards = this.numberTurnedCards + 1;
         }
         else{
             Error.printError(1);
@@ -24,20 +24,26 @@ public class Field{
         return cards;
     }
 
+
     public void display(){
 
         int x = 280 ;
         int y = PokerTony.Y/2-100;
 
-        for(int i = 0; i < turnedCards; i++){
+        for(int i = 0; i < numberTurnedCards; i++){
             cards[i].display(x, y);
             x = x + 80;
         }
 
-        for (int i = 0; i <(5 - turnedCards);i++){
+        for (int i = 0; i <(5 - numberTurnedCards);i++){
             BackCard.display(x , y);
             x = x + 80;
         }
+
+    }
+
+    public int getNumberTurnedCard(){
+        return numberTurnedCards;
 
     }
 

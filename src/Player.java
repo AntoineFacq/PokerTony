@@ -11,6 +11,7 @@ public class Player {
     private static int cardPackLenght = 2;
     private Boolean frozen = false;
     private int cash;
+    private Boolean dead = false;
 
 
     public Player(String name, CardPack cardPack) {
@@ -64,6 +65,20 @@ public class Player {
 
     public Boolean getFrozen(){
         return this.frozen;
+    }
+
+    public void setDead(Boolean dead){
+        this.dead = dead;
+    }
+
+    public Boolean getDead(){
+        return this.dead;
+    }
+
+    public void GameValue(){
+        /**
+         * Gere la classe game value en l'attribuant au joueurs
+         */
     }
 
 }

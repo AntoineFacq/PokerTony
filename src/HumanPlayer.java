@@ -28,6 +28,9 @@ public class HumanPlayer extends Player{
 
 
     public int play(){
+        /**
+         *  Function witch ask the player's decision
+         */
         return -1;
     }
 

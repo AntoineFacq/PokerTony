@@ -25,6 +25,9 @@ public class MachinePlayer extends Player{
     }
 
     public int play(){
+        /**
+         * Function witch control the machine's player
+         */
         return -1;
     }
 }
