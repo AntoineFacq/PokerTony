@@ -1,54 +1,57 @@
 package pokertony;
 
+import java.util.Arrays;
+import pokertony.utils.PokerException;
 
+public final class Field {
 
-public class Field{
+    public static final int HIDDEN = 0;
+    public static final int FIRST_SHOW = 1;
+    public static final int SECOND_SHOW = 2;
+    
+    private int state;
+    private int shownCards;
+    private final CardPack cardPack = new CardPack(new Card[5]);
 
-    private Card[] cards;
-    private int numberTurnedCards;
-
-    Field(CardPack cardPack){
-        this.cards = cardPack.takeNumberCard(5);
-        this.numberTurnedCards = 3;
+    public Field() {
+        PokerGame.game.getCardPack().transferCards(this.getCardPack(), 0, 5);
+        this.setState(Field.HIDDEN);
     }
 
-    public void returnCard(){
-        if(numberTurnedCards < 5 ){
-        this.numberTurnedCards = this.numberTurnedCards + 1;
+    public void setState(int state) {
+        this.state = state;
+        switch (state) {
+            case Field.HIDDEN:
+                this.shownCards = 0;
+                break;
+            case Field.FIRST_SHOW:
+                this.shownCards = 3;
+                break;
+            case Field.SECOND_SHOW:
+                this.shownCards = 5;
+                break;
         }
-        else{
-            Error.printError(1);
+        for (int i = 0; i < this.shownCards; i++) {
+            this.getCards()[i].setTurned(true);
         }
-
     }
 
-    public Card[] getCards(){
-        return cards;
+    public Card[] getCards() {
+        return this.getCardPack().getCards();
     }
 
+    public CardPack getCardPack() {
+        return this.cardPack;
+    }
 
-    public void display(){
+    public void display() {
 
-        int x = 280 ;
-        int y = PokerTony.Y/2-100;
-
-        for(int i = 0; i < numberTurnedCards; i++){
-            cards[i].display(x, y);
+        int x = 280;
+        int y = PokerGame.game.Y / 2 - 100;
+        for (Card card : this.getCards()) {
+            card.display(x, y);
             x = x + 80;
         }
 
-        for (int i = 0; i <(5 - numberTurnedCards);i++){
-            BackCard.display(x , y);
-            x = x + 80;
-        }
-
     }
-
-    public int getNumberTurnedCard(){
-        return numberTurnedCards;
-
-    }
-
-
-
 }

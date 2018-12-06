@@ -6,11 +6,10 @@ import PaD.*;
 public class GameValue{
 
     private Card[] handAndAllField = new Card[7];
-    private int numberTurnedCards = PokerTony.field.getNumberTurnedCard();
     private Card[] handAndAutorizeFiled;
     
     GameValue(Player player){
-        // this.handAndField = player.gethand() + PokerTony.field.getCards();
+        // this.handAndField = player.getHand() + PokerTony.field.getCards();
     }
     /*
     public Card[] autorizeCard(){

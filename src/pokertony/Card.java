@@ -8,12 +8,23 @@ public class Card {
     private Rank rank;
     private Image img;
 
+    private boolean turned = false;
 
 
     public Card(Rank r, Color c) {
-
         this.rank = r;
         this.color = c;
+        
+        
+    }
+    
+    
+    public void setTurned(boolean toggle){
+        this.turned = toggle;
+    }
+    
+    public boolean isTurned(){
+        return this.turned;
     }
 
     public Color getColor() {
@@ -35,12 +46,16 @@ public class Card {
     }
 
     public void display(double x, double y) {
-        String path = "resources/images/" + this.getRank().toString().toLowerCase() + "-" + this.getColor().toString().toLowerCase() + ".gif";
-
+        String path;
+        if(this.isTurned()){
+            path = "resources/images/" + this.getRank().toString().toLowerCase() + "-" + this.getColor().toString().toLowerCase() + ".gif";
+        }else{
+            path = "resources/images/back.gif";
+        }
         img = new Image(path);
         img.setOrig(x, y);
 
-        PokerTony.pad.ajouter(this.img);
+        PokerGame.game.getPaD().ajouter(this.img);
     }
 
     @Override

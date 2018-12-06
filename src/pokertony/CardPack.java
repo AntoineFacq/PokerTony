@@ -2,7 +2,8 @@ package pokertony;
 
 import PaD.*;
 import java.util.Random;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CardPack {
 
@@ -29,29 +30,28 @@ public class CardPack {
     public Card[] getCards() {
         return this.cards;
     }
-    
-    public Object[] getCardsByValue(Rank rank) {
-        Vector<Card> cards = new Vector<Card>();
-        for(Card c : this.getCards()) {
-            if(c.getRank() == rank){
-                cards.addElement(c);
-            }
-        }
-        return cards.toArray();
-    }
-    
-    public Object[] getCardsByColor(Color color) {
-        Vector<Card> cards = new Vector<Card>();
-        for(Card c : this.getCards()) {
-            if(c.getColor() == color){
-                cards.addElement(c);
-            }
-        }
-        return cards.toArray();
-    }
 
     public void setCards(Card[] cards) {
         this.cards = cards;
+    }
+
+    /**
+     * Transfer cards to a CardPack to another
+     *
+     * @param dest CardPack to transfer the Cards to
+     * @param count
+     */
+    public void transferCards(CardPack dest, int from, int to) {
+        Card[] cardPackCards = this.getCards();
+        Card[] cards = new Card[to - from];
+        int j = 0;
+
+        for (int i = from; i < to; i++) {
+
+            cards[j] = cardPackCards[i];
+            j++;
+        }
+        dest.setCards(cards);
     }
 
     public void swap(int first, int second) {
@@ -116,7 +116,7 @@ public class CardPack {
     public void rapidSort() {
         rapidSort(0, cards.length - 1, false);
     }
-    
+
     public void rapidSort(boolean byColor) {
         rapidSort(0, cards.length - 1, false);
     }
@@ -154,18 +154,14 @@ public class CardPack {
         return output;
     }
 
-
-
-    public Card[] takeNumberCard(int number){
-
+    public Card[] takeNumberCard(int number) {
 
         Card[] returnCard = new Card[number];
 
-        for(int i = counter; i< (counter+number); i++){
-            returnCard[i-counter] = cards[i];
+        for (int i = counter; i < (counter + number); i++) {
+            returnCard[i - counter] = cards[i];
         }
         this.counter = this.counter + number;
         return returnCard;
     }
-
 }
