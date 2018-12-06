@@ -48,14 +48,14 @@ public class PokerGame {
             pad.supprimer(header, instructions);
 
             this.player = this.players[0] = new Player(promptString("Please provide your name:"), this);
-            this.getCardPack().transferCards(this.player.getCardPack(), 0, 2);
+            this.getCardPack().transferCards(this.player.getCardPack(), 5, 7);
             for (Card c : this.player.getCards()) {
                 c.setTurned(true);
             }
 
             for (int i = 1; i < this.getPlayers().length; i++) {
                 this.players[i] = new Player(names[random.nextInt(names.length)], this);
-                this.getCardPack().transferCards(this.players[i].getCardPack(), i * 2 + 5, (i + 1) * 2 + 5);
+                this.getCardPack().transferCards(this.players[i].getCardPack(), i * 2 + 7, (i + 1) * 2 + 7);
             }
             this.setGameState(Field.HIDDEN);
 
