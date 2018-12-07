@@ -33,21 +33,22 @@ public class PokerGame {
         this.field = new Field();
         boolean rematch = true;
 
+        Texte header = new Texte(300, 20, "Welcome on PokerTony!\nA (not so) quick poker game!");
+        Texte instructions = new Texte(300, 40, "To start, open your prompt and follow instructions...");
+        pad.ajouter(header, instructions);
+        this.displayDecoration();
+
+        int botCount = 0;
+        while (botCount < 1 || botCount > 3) {
+            botCount = promptInt("How many bots do you want to play with? (1-3)");
+        }
+        this.players = new Player[botCount + 1];
+
+        var nick = promptString("Please provide your name:");
+        
         while (rematch) {
-            Texte header = new Texte(300, 20, "Welcome on PokerTony!\nA (not so) quick poker game!");
-            Texte instructions = new Texte(300, 40, "To start, open your prompt and follow instructions...");
-            pad.ajouter(header, instructions);
-
-            int botCount = 0;
-            while (botCount < 1 || botCount > 3) {
-                botCount = promptInt("How many bots do you want to play with? (1-3)");
-            }
-            promptString(""); // Workaround : else, first prompt doesn't wait for input
-            this.players = new Player[botCount + 1];
-
-            pad.supprimer(header, instructions);
-
-            this.player = this.players[0] = new Player(promptString("Please provide your name:"), this);
+            pad.clear();
+            this.player = this.players[0] = new Player(nick, this);
             this.getCardPack().transferCards(this.player.getCardPack(), 5, 7);
             for (Card c : this.player.getCards()) {
                 c.setTurned(true);
@@ -58,8 +59,8 @@ public class PokerGame {
                 this.getCardPack().transferCards(this.players[i].getCardPack(), i * 2 + 7, (i + 1) * 2 + 7);
             }
             this.setGameState(Field.HIDDEN);
-
             this.displayGame();
+
             Thread.sleep(2000);
             this.setGameState(Field.FIRST_SHOW);
             Thread.sleep(2000);
@@ -116,10 +117,27 @@ public class PokerGame {
             this.getPlayers()[2].display(15, this.Y / 2 - 50);
         }
         if (this.getPlayers().length > 3) {
-            this.getPlayers()[3].display(this.X - 155, this.Y / 2 - 50);
+            this.getPlayers()[3].display(this.X - 185, this.Y / 2 - 50);
         }
 
         this.getField().display();
+
+    }
+
+    public void displayDecoration() throws InterruptedException {
+        for (int i = 0; i < 10; i++) {
+            CardPack decoration = new CardPack();
+            if (i != 9) {
+                decoration = new CardPack(new Card[]{decoration.getCards()[random.nextInt(52)], decoration.getCards()[random.nextInt(52)]});
+            } else {
+                decoration = new CardPack(new Card[]{new Card(Rank.ACE, Color.HEART), new Card(Rank.ACE, Color.SPADE)});
+            }
+            for (Card c : decoration.getCards()) {
+                c.setTurned(true);
+            }
+            decoration.display(425, 200);
+            Thread.sleep(100);
+        }
 
     }
 
@@ -137,12 +155,16 @@ public class PokerGame {
 
     public static String promptString(String message) {
         echoln(message);
-        return scan.nextLine();
+        String line = scan.nextLine();
+        scan.nextLine();
+        return line;
     }
 
     public static int promptInt(String message) {
         echoln(message);
-        return scan.nextInt();
+        int line = scan.nextInt();
+        scan.nextLine();
+        return line;
     }
 
 }

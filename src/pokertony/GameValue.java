@@ -1,16 +1,16 @@
 package pokertony;
 
-
 import PaD.*;
 
-public class GameValue{
+public class GameValue {
 
     private Card[] handAndAllField = new Card[7];
     private Card[] handAndAutorizeFiled;
-    
-    GameValue(Player player){
+
+    GameValue(Player player) {
         // this.handAndField = player.getHand() + PokerTony.field.getCards();
     }
+
     /*
     public Card[] autorizeCard(){
         /**
@@ -18,83 +18,81 @@ public class GameValue{
          
         return 
     }
-    */
-
-    public Boolean checkPair(Card[] cards){
+     */
+    public Boolean checkPair(Card[] cards) {
         /**
          * Return true if the player have a Pair
          */
         return true;
     }
 
-    public Boolean checkTwoPair(){
+    public Boolean checkTwoPair() {
         /**
          * Return true if the player have two Pair
          */
         return true;
     }
 
-    public Boolean checkKind(){
+    public Boolean checkKind() {
         /**
          * Return true if the player have a Kind
          */
         return true;
     }
 
-    public Boolean checkThreeOfKind(){
+    public Boolean checkThreeOfKind() {
         /**
          * Return true if the player have a ThreeOfKind
          */
         return true;
     }
 
-    public Boolean checkStraight(){
+    public Boolean checkStraight() {
         /**
          * Return true if the player have a Straight
          */
         return true;
     }
 
-    public Boolean checkFlush(){
+    public Boolean checkFlush() {
         /**
          * Return true if the player have a Flush
          */
         return true;
     }
 
-    public Boolean checkFullHouse(){
+    public Boolean checkFullHouse() {
         /**
          * Return true if the player have a Full House
          */
         return true;
     }
 
-    public Boolean checkFourOfKind(){
+    public Boolean checkFourOfKind() {
         /**
          * Return true if the player have a Four Of Kind
          */
         return true;
     }
 
-    public Boolean checkStraightFlush(){
+    public Boolean checkStraightFlush() {
         /**
          * Return true if the player have a Straight Flush
          */
         return true;
     }
 
-    public Boolean checkRoyalFlush(){
+    public Boolean checkRoyalFlush() {
         /**
          * Return true if the player have a Royal Flush
          */
         return true;
     }
 
-    public static void compareGameValue(){
+    public static void compareGameValue() {
         /**
-         * Compare  GameValue of all player
+         * Compare GameValue of all player
          */
     }
 
 }
-
