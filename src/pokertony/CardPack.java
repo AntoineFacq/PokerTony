@@ -4,6 +4,7 @@ import PaD.*;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
+import pokertony.*;
 
 public class CardPack {
 

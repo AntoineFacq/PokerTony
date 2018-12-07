@@ -1,6 +1,7 @@
 package pokertony;
 
 import PaD.*;
+import pokertony.*;
 
 public class Card {
 

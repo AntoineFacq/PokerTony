@@ -7,6 +7,7 @@ package pokertony;
 
 import PaD.*;
 import java.util.*;
+import pokertony.*;
 
 public class PokerGame {
 
@@ -47,14 +48,14 @@ public class PokerGame {
 
             pad.supprimer(header, instructions);
 
-            this.player = this.players[0] = new Player(promptString("Please provide your name:"), this);
+            this.player = this.players[0] = new Player(promptString("Please provide your name:"));
             this.getCardPack().transferCards(this.player.getCardPack(), 5, 7);
             for (Card c : this.player.getCards()) {
                 c.setTurned(true);
             }
 
             for (int i = 1; i < this.getPlayers().length; i++) {
-                this.players[i] = new Player(names[random.nextInt(names.length)], this);
+                this.players[i] = new Player(names[random.nextInt(names.length)]);
                 this.getCardPack().transferCards(this.players[i].getCardPack(), i * 2 + 7, (i + 1) * 2 + 7);
             }
             this.setGameState(Field.HIDDEN);
@@ -64,6 +65,8 @@ public class PokerGame {
             this.setGameState(Field.FIRST_SHOW);
             Thread.sleep(2000);
             this.setGameState(Field.SECOND_SHOW);
+            // temp
+            printHand();
 
             Thread.sleep(2000);
 
@@ -143,6 +146,14 @@ public class PokerGame {
     public static int promptInt(String message) {
         echoln(message);
         return scan.nextInt();
+    }
+
+    // temp
+    public void printHand(){
+        for(int i =0; i < players.length; i++){
+            players[i].printHand();
+        }
+
     }
 
 }

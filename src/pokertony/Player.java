@@ -1,4 +1,5 @@
 package pokertony;
+import pokertony.hand.HandValue;
 
 import PaD.*;
 import java.util.*;
@@ -11,21 +12,19 @@ public class Player {
 
     private int winCount = 0;
 
-    private PokerGame game;
-
     private CardPack cardPack = new CardPack(new Card[2]);
 
-    public Player(String name, PokerGame game) {
-        this.setName(name);
-        this.game = game;
-    }
+    private HandValue handValue;
 
-    public PokerGame getGame() {
-        return this.game;
+    private int[] powerHand;
+    
+
+    public Player(String name) {
+        this.setName(name);
     }
 
     public Field getField() {
-        return this.getGame().getField();
+        return PokerGame.game.getField();
     }
 
     public void setName(String name) {
@@ -67,5 +66,16 @@ public class Player {
          * Gere la classe game value en l'attribuant au joueurs
          */
     }
+
+    //temp
+    public void printHand(){
+        System.out.println("Joueur:  " + this.name);    //supe
+        System.out.println();
+        this.handValue = new HandValue(this);
+        this.powerHand = handValue.powerHand;
+        
+        System.out.println("###Combinaison "  + powerHand[0]);
+        System.out.println("###Carte hautes" +  powerHand[1]);
+        }
 
 }
