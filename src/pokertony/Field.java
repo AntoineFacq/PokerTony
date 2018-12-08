@@ -1,6 +1,6 @@
 package pokertony;
 
-import java.util.Arrays;
+import java.util.*;
 import pokertony.utils.PokerException;
 
 public final class Field {
@@ -11,7 +11,7 @@ public final class Field {
     
     private int state;
     private int shownCards;
-    private final CardPack cardPack = new CardPack(new Card[5]);
+    private final CardPack cardPack = new CardPack(new ArrayList<Card>());
 
     public Field() {
         PokerGame.game.getCardPack().transferCards(this.getCardPack(), 0, 5);
@@ -32,11 +32,11 @@ public final class Field {
                 break;
         }
         for (int i = 0; i < this.shownCards; i++) {
-            this.getCards()[i].setTurned(true);
+            this.getCards().get(i).setTurned(true);
         }
     }
 
-    public Card[] getCards() {
+    public ArrayList<Card> getCards() {
         return this.getCardPack().getCards();
     }
 

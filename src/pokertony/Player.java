@@ -11,21 +11,35 @@ public class Player {
 
     private int winCount = 0;
 
-    private PokerGame game;
+    private CardPack cardPack = new CardPack(new ArrayList<Card>());
+    
 
-    private CardPack cardPack = new CardPack(new Card[2]);
-
-    public Player(String name, PokerGame game) {
+    private Hand hand;
+    
+    public Player(String name, int id) {
         this.setName(name);
-        this.game = game;
+        PokerGame.game.getCardPack().transferCards(this.getCardPack(), id * 2 + 7, (id + 1) * 2 + 7);
+        this.hand = new Hand(this.getPlayableCards());
+        
     }
-
-    public PokerGame getGame() {
-        return this.game;
+    
+    public Hand getHand(){
+        return this.hand;
     }
-
+    
+    public ArrayList<Card> getPlayableCards(){
+        ArrayList<Card> merged = new ArrayList<Card>();
+        for(Card c : this.getCards()){
+            merged.add(c);
+        }
+        for(Card c : this.getField().getCards()){
+            merged.add(c);
+        }
+        return merged;
+    }
+    
     public Field getField() {
-        return this.getGame().getField();
+        return PokerGame.game.getField();
     }
 
     public void setName(String name) {
@@ -40,7 +54,7 @@ public class Player {
         return this.cardPack;
     }
 
-    public Card[] getCards() {
+    public ArrayList<Card> getCards() {
         return this.getCardPack().getCards();
     }
 
@@ -57,15 +71,6 @@ public class Player {
             c.display(x+i*100, y + 25);
             i++;
         }
-    }
-
-    public void display(int y) {
-    }
-
-    public void GameValue() {
-        /**
-         * Gere la classe game value en l'attribuant au joueurs
-         */
     }
 
 }

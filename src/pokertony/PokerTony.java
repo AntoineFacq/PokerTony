@@ -7,6 +7,7 @@ package pokertony;
 
 import PaD.*;
 import java.util.*;
+import pokertony.*;
 
 public class PokerTony {
 

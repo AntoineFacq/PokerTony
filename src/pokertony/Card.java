@@ -1,6 +1,9 @@
 package pokertony;
 
 import PaD.*;
+import pokertony.*;
+
+import java.util.*;
 
 public class Card {
 
@@ -10,20 +13,16 @@ public class Card {
 
     private boolean turned = false;
 
-
     public Card(Rank r, Color c) {
         this.rank = r;
         this.color = c;
-        
-        
     }
-    
-    
-    public void setTurned(boolean toggle){
+
+    public void setTurned(boolean toggle) {
         this.turned = toggle;
     }
-    
-    public boolean isTurned(){
+
+    public boolean isTurned() {
         return this.turned;
     }
 
@@ -33,6 +32,14 @@ public class Card {
 
     public Rank getRank() {
         return this.rank;
+    }
+
+    public static String rankAsString(int i) {
+        return Rank.values()[i].toString();
+    }
+    
+    public static String suitAsString(int i) {
+        return Color.values()[i].toString();
     }
 
     public int compareTo(Card c, boolean byColor) {
@@ -47,9 +54,9 @@ public class Card {
 
     public void display(double x, double y) {
         String path;
-        if(this.isTurned()){
+        if (this.isTurned()) {
             path = "resources/images/" + this.getRank().toString().toLowerCase() + "-" + this.getColor().toString().toLowerCase() + ".gif";
-        }else{
+        } else {
             path = "resources/images/back.gif";
         }
         img = new Image(path);
@@ -62,4 +69,5 @@ public class Card {
     public String toString() {
         return this.rank + " (" + this.rank.getValue() + ") of " + this.getColor();
     }
+
 }

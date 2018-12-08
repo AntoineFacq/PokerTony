@@ -4,35 +4,34 @@ import PaD.*;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.Arrays;
+import pokertony.*;
 
 public class CardPack {
 
-    private Card[] cards;
-    private int counter;
+    private ArrayList<Card> cards = new ArrayList<Card>();
 
     public CardPack() {
-        this.cards = new Card[52];
-        int i = 0;
-
         for (Color color : Color.values()) {
-
             for (Rank rank : Rank.values()) {
-                this.cards[i] = new Card(rank, color);
-                i++;
+                this.cards.add(new Card(rank, color));
             }
         }
     }
 
-    public CardPack(Card[] cards) {
+    public CardPack(ArrayList<Card> cards) {
         this.cards = cards;
     }
 
-    public Card[] getCards() {
+    public ArrayList<Card> getCards() {
         return this.cards;
     }
 
-    public void setCards(Card[] cards) {
+    public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
+    }
+
+    public Card drawFromDeck() {
+        return this.cards.remove(this.cards.size() - 1);
     }
 
     /**
@@ -42,24 +41,22 @@ public class CardPack {
      * @param count
      */
     public void transferCards(CardPack dest, int from, int to) {
-        Card[] cardPackCards = this.getCards();
-        Card[] cards = new Card[to - from];
-        int j = 0;
+        ArrayList<Card> cardPackCards = this.getCards();
+        ArrayList<Card> cards = new ArrayList<Card>();
 
         for (int i = from; i < to; i++) {
 
-            cards[j] = cardPackCards[i];
-            j++;
+            cards.add(cardPackCards.get(i));
         }
         dest.setCards(cards);
     }
 
     public void swap(int first, int second) {
 
-        Card temp = cards[first];
+        Card temp = cards.get(first);
 
-        cards[first] = cards[second];
-        cards[second] = temp;
+        cards.set(first, cards.get(second));
+        cards.set(second, temp);
     }
 
     public void shuffle() {
@@ -69,7 +66,7 @@ public class CardPack {
         int first;
         int second;
 
-        for (int i = 0; i < this.cards.length; i++) {
+        for (int i = 0; i < this.cards.size(); i++) {
 
             first = rand.nextInt(52);
             second = rand.nextInt(52);
@@ -84,7 +81,7 @@ public class CardPack {
 
         for (int j = low; j < high; j++) {
 
-            if (this.cards[j].compareTo(this.cards[high], byColor) < 0) {
+            if (this.cards.get(j).compareTo(this.cards.get(high), byColor) < 0) {
 
                 i++;
 
@@ -114,11 +111,11 @@ public class CardPack {
     }
 
     public void rapidSort() {
-        rapidSort(0, cards.length - 1, false);
+        rapidSort(0, cards.size() - 1, false);
     }
 
     public void rapidSort(boolean byColor) {
-        rapidSort(0, cards.length - 1, false);
+        rapidSort(0, cards.size() - 1, false);
     }
 
     public void display(double x, double y) {
@@ -152,16 +149,5 @@ public class CardPack {
         }
 
         return output;
-    }
-
-    public Card[] takeNumberCard(int number) {
-
-        Card[] returnCard = new Card[number];
-
-        for (int i = counter; i < (counter + number); i++) {
-            returnCard[i - counter] = cards[i];
-        }
-        this.counter = this.counter + number;
-        return returnCard;
     }
 }
